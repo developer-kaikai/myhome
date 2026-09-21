@@ -1,0 +1,2 @@
+<view class="page"><view class="eyebrow">主厨工作台</view><view class="title"><text>把喜欢的味道，
+做给喜欢的人。</text></view><block wx:if="{{ready}}"><view class="row section" bindtap="access"><text>日常密令</text><text class="muted">管理亲友访问 ›</text></view><view class="notice">菜单维护与餐单确认正在开发。</view></block><view class="error">{{error}}</view></view>

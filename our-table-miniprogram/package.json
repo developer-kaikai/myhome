@@ -1,0 +1,12 @@
+{
+  "name": "our-table-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "miniprogram-api-typings": "4.1.0"
+  }
+}

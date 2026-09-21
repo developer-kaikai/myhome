@@ -1,3 +1,9 @@
 ~$*.docx
 .DS_Store
 .idea/
+.local/
+**/target/
+**/node_modules/
+**/project.private.config.json
+**/config.local.ts
+*.log

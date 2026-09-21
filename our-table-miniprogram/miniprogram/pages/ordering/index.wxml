@@ -1,0 +1,2 @@
+<view class="page" wx:if="{{ready}}"><view class="eyebrow">我们的餐桌</view><view class="title"><text>今天，
+想吃点什么？</text></view><view class="empty">点餐功能正在开发，完成后会在这里呈现。</view></view>

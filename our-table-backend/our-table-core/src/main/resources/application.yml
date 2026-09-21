@@ -1,0 +1,53 @@
+server:
+  port: 8082
+  shutdown: graceful
+spring:
+  application:
+    name: core-service
+  config:
+    import: optional:file:./.local/application-local.properties
+  datasource:
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/myhome?connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true&characterEncoding=UTF-8}
+    username: ${DB_USERNAME:myhome}
+    password: ${DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 5000
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 3s
+      connect-timeout: 3s
+  jackson:
+    time-zone: UTC
+    deserialization:
+      fail-on-unknown-properties: true
+  flyway:
+    enabled: ${DB_MIGRATE:false}
+    baseline-on-migrate: false
+    clean-disabled: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    arg-name-based-constructor-auto-mapping: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+springdoc:
+  api-docs:
+    enabled: ${API_DOCS_ENABLED:false}
+  swagger-ui:
+    enabled: ${API_DOCS_ENABLED:false}
+app:
+  security:
+    encryption-key: ${APP_ENCRYPTION_KEY:}
+  wechat:
+    app-id: ${WECHAT_APP_ID:}
+    app-secret: ${WECHAT_APP_SECRET:}

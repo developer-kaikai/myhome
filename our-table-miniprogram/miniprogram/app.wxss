@@ -1,0 +1,20 @@
+page { background:#FAFAF6; color:#161616; font-family:"PingFang SC",MiSans,"HarmonyOS Sans SC","Microsoft YaHei",sans-serif; font-size:30rpx; line-height:1.5; }
+.page { padding:40rpx 32rpx calc(170rpx + env(safe-area-inset-bottom)); }
+.eyebrow { font-size:22rpx; color:#777770; letter-spacing:2rpx; margin-bottom:20rpx; }
+.title { font-size:60rpx; line-height:1.15; font-weight:700; margin:0 0 32rpx; }
+.subtitle { font-size:36rpx; font-weight:600; margin:40rpx 0 20rpx; }
+.muted { color:#777770; font-size:26rpx; }
+.section { padding:32rpx 0; border-bottom:1rpx solid #DDDDD7; }
+.row { display:flex; justify-content:space-between; align-items:center; gap:24rpx; }
+button { font-size:30rpx; border-radius:16rpx; font-weight:600; margin:24rpx 0 0; }
+button::after { border:0; }
+.primary { background:#161616; color:#fff; min-height:96rpx; line-height:96rpx; }
+.secondary { border:1rpx solid #161616; color:#161616; background:transparent; min-height:88rpx; line-height:88rpx; }
+button[disabled] { opacity:.45; }
+.input { background:#F3F3EF; border-radius:12rpx; padding:24rpx; height:48rpx; margin:16rpx 0; }
+.error { font-size:26rpx; color:#C94A39; padding:16rpx 0; }
+.notice { margin:28rpx 0; color:#777770; font-size:26rpx; }
+.dot { display:inline-block; width:12rpx; height:12rpx; border-radius:50%; background:#B8C84A; margin-right:12rpx; }
+.link { color:#161616; text-decoration:underline; font-size:26rpx; padding:24rpx 0; }
+.danger { color:#C94A39; background:transparent; font-weight:400; }
+.empty { padding:64rpx 0; border-top:1rpx solid #DDDDD7; color:#777770; }

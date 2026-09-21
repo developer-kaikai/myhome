@@ -1,0 +1,15 @@
+{
+  "appid": "touristappid",
+  "projectname": "我们的餐桌",
+  "compileType": "miniprogram",
+  "miniprogramRoot": "miniprogram/",
+  "setting": {
+    "useCompilerPlugins": [
+      "typescript"
+    ],
+    "es6": true,
+    "minified": true,
+    "urlCheck": true
+  },
+  "libVersion": "3.10.0"
+}

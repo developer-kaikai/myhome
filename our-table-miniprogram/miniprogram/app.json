@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/mine/index",
+    "pages/home/index",
+    "pages/ordering/index",
+    "pages/orders/index",
+    "pages/party/index",
+    "pages/access/index"
+  ],
+  "subpackages": [
+    {
+      "root": "subpackages/chef",
+      "pages": [
+        "index",
+        "access"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTitleText": "我们的餐桌",
+    "navigationBarBackgroundColor": "#FAFAF6",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FAFAF6"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#777770",
+    "selectedColor": "#161616",
+    "backgroundColor": "#FAFAF6",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/ordering/index",
+        "text": "点餐"
+      },
+      {
+        "pagePath": "pages/orders/index",
+        "text": "餐单"
+      },
+      {
+        "pagePath": "pages/party/index",
+        "text": "聚会"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
