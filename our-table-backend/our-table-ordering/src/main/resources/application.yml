@@ -24,6 +24,7 @@ spring:
     time-zone: UTC
     deserialization:
       fail-on-unknown-properties: true
+      accept-float-as-int: false
   flyway:
     enabled: ${DB_MIGRATE:false}
     baseline-on-migrate: false

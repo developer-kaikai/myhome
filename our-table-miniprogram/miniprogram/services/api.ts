@@ -5,11 +5,11 @@ interface Envelope<T> { code: string; message: string; data: T; requestId: strin
 export class ApiError extends Error {
   constructor(public code: string, message: string) { super(message); }
 }
-export function request<T>(path: string, method: 'GET' | 'POST' | 'PUT' = 'GET', data?: object, headers: Record<string, string> = {}): Promise<T> {
+export function request<T>(path: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET', data?: object, headers: Record<string, string> = {}, baseUrl = API_BASE): Promise<T> {
   const token = wx.getStorageSync<string>('sessionToken');
   return new Promise((resolve, reject) => {
     wx.request<Envelope<T>>({
-      url: API_BASE + path, method, data, timeout: 8000,
+      url: baseUrl + path, method, data, timeout: 8000,
       header: { 'Content-Type': 'application/json', ...(token ? { Authorization: 'Bearer ' + token } : {}), ...headers },
       success(res) {
         if (res.statusCode >= 200 && res.statusCode < 300 && res.data.code === 'OK') return resolve(res.data.data);

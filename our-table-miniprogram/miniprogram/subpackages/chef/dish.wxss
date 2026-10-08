@@ -1,0 +1,10 @@
+.title text { display:block; }
+.textarea { background:#F3F3EF; box-sizing:border-box; border-radius:12rpx; padding:24rpx; width:100%; height:160rpx; }
+.recipe { height:280rpx; margin-top:16rpx; }
+.months { display:flex; flex-wrap:wrap; gap:16rpx; }
+.month { padding:16rpx 24rpx; border:1rpx solid #DDDDD7; border-radius:12rpx; }
+.selected { background:#B8C84A; border-color:#B8C84A; }
+.spec { border-bottom:1rpx solid #DDDDD7; padding:24rpx 0; }
+.spec .input { min-width:0; flex:1; }
+.default { font-size:24rpx; color:#777770; white-space:nowrap; }
+.active { color:#161616; }

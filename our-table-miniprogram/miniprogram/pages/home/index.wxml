@@ -1,2 +1,18 @@
-<view class="page" wx:if="{{ready}}"><view class="eyebrow">我们的餐桌</view><view class="title"><text>一起做饭，
-好好吃饭。</text></view><view class="empty">首页功能正在开发，完成后会在这里呈现。</view></view>
+<view class="page home" wx:if="{{ready}}">
+  <view class="row"><view class="eyebrow">OUR TABLE / 日常</view><text class="date" wx:if="{{summary}}">{{summary.today}}</text></view>
+  <view class="title"><text>{{summary ? summary.greeting : '一起做饭'}}，
+好好吃饭。</text></view>
+  <view class="filters"><picker mode="selector" range="{{scopeNames}}" value="{{scopeIndex}}" bindchange="scope"><view class="scope">{{scopeNames[scopeIndex]}} <text>⌄</text></view></picker><view class="periods"><text wx:for="{{periods}}" wx:key="key" data-key="{{item.key}}" bindtap="period" class="period {{period===item.key?'active':''}}">{{item.name}}</text></view></view>
+  <view class="notice" wx:if="{{loading}}">正在整理这段时间的餐桌记忆…</view>
+  <view class="error" wx:if="{{error}}">{{error}}<text class="link" bindtap="load">重试</text></view>
+  <block wx:if="{{summary && !loading}}">
+    <view class="statistics"><view class="count">{{summary.cookCount}}<text class="unit">次</text></view><view class="muted">一起好好吃饭 · 按餐厅餐单计次</view><view class="range">{{summary.rangeStart}} — {{summary.rangeEnd}}</view></view>
+    <view class="trend"><view wx:for="{{points}}" wx:key="date" class="point {{item.future?'future':''}}" data-index="{{index}}" bindtap="point"><view class="track"><view class="future-mark" wx:if="{{item.future}}"></view><view class="bar" wx:else style="height:{{item.height}}rpx;"></view></view><text class="tick">{{item.tick?item.label:''}}</text></view></view>
+    <view class="trend-note">{{pointText || '点击查看次数 · 浅色虚线表示尚未到来'}}</view>
+    <view class="block-heading"><text>最受欢迎</text><text class="muted">按实际做过的餐单</text></view>
+    <view class="empty compact" wx:if="{{!popular.length}}">暂无最受欢迎菜品，<text>下一顿，从喜欢的开始。</text></view>
+    <view class="popular" wx:for="{{popular}}" wx:key="dishId"><text class="rank">{{index+1}}</text><view class="food"><view class="food-name">{{item.displayName}}</view><view class="muted">{{item.scoreText}} · {{item.reviewCount}} 条评价</view></view><view class="times">{{item.orderCount}}<text> 餐</text></view></view>
+    <view class="seasonal" wx:if="{{recommendation}}" bindtap="recommend"><view class="eyebrow">当季 / TODAY'S PICK</view><view class="row"><view class="seasonal-name">{{recommendation.dishName}}</view><text class="arrow">↗</text></view><view class="muted">{{recommendation.restaurantName}} · {{recommendation.scoreText}}</view><view class="seasonal-intro" wx:if="{{recommendation.introduction}}">{{recommendation.introduction}}</view><view class="seasonal-action">看看这道菜，选一餐一起吃 ›</view></view>
+    <button class="primary start" bindtap="start">一起选菜</button>
+  </block>
+</view>

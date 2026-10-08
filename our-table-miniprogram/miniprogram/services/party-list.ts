@@ -1,0 +1,15 @@
+import {ApiError,Me,request,login,message} from './api';
+import {partyRequest,Listing,Item,coverImage} from './party';
+import {beijing} from './reviews';
+type ListData={loggedIn:boolean;daily:boolean;loading:boolean;busy:boolean;error:string;state:string;page:number;hasMore:boolean;parties:(Item&{timeText:string;statusText:string;coverImage:string})[]};
+type ListMethods={_visible:boolean;_generation:number;load():Promise<void>;signIn():Promise<void>;tab(e:WechatMiniprogram.TouchEvent):void;next():void;previous():void;create():void;open(e:WechatMiniprogram.TouchEvent):void;mine():void;coverError(e:WechatMiniprogram.CustomEvent):void};
+export function partyList(tab:boolean):WechatMiniprogram.Page.Options<ListData,ListMethods>{return {
+ data:{loggedIn:false,daily:false,loading:false,busy:false,error:'',state:'ACTIVE',page:1,hasMore:false,parties:[] as (Item&{timeText:string;statusText:string;coverImage:string})[]},_visible:false,_generation:0,
+ async onShow(){this._visible=true;this.setData({loggedIn:!!wx.getStorageSync('sessionToken')});this.getTabBar?.()?.setData({selected:'party',daily:false});if(this.data.loggedIn)await this.load();},
+ onHide(){this._visible=false;this._generation++;this.setData({loading:false});},onUnload(){this.onHide();},
+ async signIn(){if(this.data.busy)return;this.setData({busy:true,error:''});try{await login();this.setData({loggedIn:true});await this.load();}catch(e){this.setData({error:message(e)});}finally{this.setData({busy:false});}},
+ async load(){const generation=++this._generation;this.setData({loading:true,error:'',parties:[]});try{const me=await request<Me>('/users/me');const result=await partyRequest<Listing>(`/my/parties?state=${this.data.state}&page=${this.data.page}`);if(!this._visible||generation!==this._generation)return;this.setData({daily:me.dailyAllowed,hasMore:result.hasMore,parties:result.parties.map(p=>({...p,coverImage:coverImage(p.coverPreset),timeText:beijing(p.startAt),statusText:p.status==='ENDED'?'已结束':p.reopened?'补充中':'活动中'}))});if(tab)this.getTabBar?.()?.setData({selected:'party',daily:me.dailyAllowed});}catch(e){if(this._visible&&generation===this._generation){if(e instanceof ApiError&&e.code==='AUTH_REQUIRED')this.setData({loggedIn:false,daily:false});this.setData({error:message(e)});}}finally{if(generation===this._generation)this.setData({loading:false});}},
+ tab(e:WechatMiniprogram.TouchEvent){this.setData({state:e.currentTarget.dataset.state,page:1});void this.load();},next(){if(!this.data.loading&&this.data.hasMore){this.setData({page:this.data.page+1});void this.load();}},previous(){if(!this.data.loading&&this.data.page>1){this.setData({page:this.data.page-1});void this.load();}},
+ coverError(e:WechatMiniprogram.CustomEvent){const id=Number(e.currentTarget.dataset.id);this.setData({parties:this.data.parties.map(p=>p.id===id?{...p,coverImage:coverImage('DEFAULT')}:p)});},
+ create(){if(this.data.daily)wx.navigateTo({url:'/subpackages/party/create'});},open(e:WechatMiniprogram.TouchEvent){wx.navigateTo({url:`/subpackages/party/detail?id=${e.currentTarget.dataset.id}`});},mine(){wx.switchTab({url:'/pages/mine/index'});}
+};}

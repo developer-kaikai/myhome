@@ -1,0 +1,21 @@
+<view class="page">
+  <view class="eyebrow">主厨工作台 / 菜品维护</view><view class="title">{{id ? '这一道，' : '新一道，'}}<text>好好做。</text></view>
+  <view class="error" wx:if="{{error}}">{{error}}</view><button class="secondary" wx:if="{{!ready}}" bindtap="load">重新加载</button>
+  <block wx:if="{{ready}}">
+    <view class="muted">名称 · 必填，最多20字</view><input class="input" value="{{name}}" data-field="name" bindinput="input" maxlength="510" placeholder="例如：番茄炒蛋" />
+    <picker mode="selector" range="{{categories}}" range-key="name" value="{{categoryIndex}}" bindchange="category"><view class="row section"><text>所属品类</text><text>{{categories[categoryIndex].name}} ›</text></view></picker>
+    <view class="subtitle" wx:if="{{seasonal}}">供应月份</view><view wx:if="{{seasonal}}" class="months"><view wx:for="{{months}}" wx:key="value" class="month {{item.selected ? 'selected' : ''}}" data-month="{{item.value}}" bindtap="month">{{item.value}}月</view></view>
+    <view class="subtitle">菜品简介</view><textarea class="textarea" value="{{introduction}}" data-field="introduction" bindinput="input" maxlength="2048" placeholder="最多50字，留一点好吃的线索" />
+    <view class="subtitle">私房做法</view><view class="muted">仅本餐厅主厨可见 · 选填，最多500字</view><textarea class="textarea recipe" value="{{recipe}}" data-field="recipe" bindinput="input" maxlength="16384" placeholder="记下用料、顺序或小窍门" />
+    <view class="row section"><text>上架</text><switch checked="{{onShelf}}" color="#B8C84A" bindchange="shelf" /></view>
+    <view class="subtitle">规格 <text class="muted">选填 · 最多3个维度</text></view>
+    <view class="spec" wx:for="{{dimensions}}" wx:for-item="dim" wx:for-index="di" wx:key="index">
+      <view class="row"><input class="input" value="{{dim.name}}" data-dim="{{di}}" bindinput="dimensionName" maxlength="510" placeholder="维度名称，如辣度" /><text class="danger" data-dim="{{di}}" bindtap="removeDimension">移除</text></view>
+      <view class="row" wx:for="{{dim.options}}" wx:for-item="opt" wx:for-index="oi" wx:key="index"><input class="input" value="{{opt.name}}" data-dim="{{di}}" data-opt="{{oi}}" bindinput="optionName" maxlength="510" placeholder="选项名称" /><text class="default {{opt.isDefault ? 'active' : ''}}" data-dim="{{di}}" data-opt="{{oi}}" bindtap="defaultOption">{{opt.isDefault ? '● 默认' : '○ 设默认'}}</text><text wx:if="{{dim.options.length > 2}}" class="danger" data-dim="{{di}}" data-opt="{{oi}}" bindtap="removeOption">×</text></view>
+      <text wx:if="{{dim.options.length < 6}}" class="link" data-dim="{{di}}" bindtap="addOption">添加选项 ＋</text>
+    </view>
+    <button class="secondary" wx:if="{{dimensions.length < 3}}" bindtap="addDimension" disabled="{{busy}}">添加规格维度</button>
+    <view class="notice">每个维度需2—6个选项，且有一个默认选项。</view>
+    <view class="error" wx:if="{{error}}">{{error}}</view><button class="primary" loading="{{busy}}" disabled="{{busy || !name}}" bindtap="save">保存菜品</button><button class="danger" wx:if="{{id}}" disabled="{{busy}}" bindtap="remove">删除菜品</button>
+  </block>
+</view>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800">
+<rect width="1000" height="800" fill="#F2E8DD"/>
+<text x="76" y="93" fill="#63574B" font-family="Arial,sans-serif" font-size="22" letter-spacing="4">OUR TABLE</text>
+<text x="76" y="711" fill="#63574B" font-family="Arial,sans-serif" font-size="20" letter-spacing="3">AROUND THE POT</text>
+<ellipse cx="530" cy="439" rx="224" ry="152" fill="#E4D5C3"/>
+<path d="M314 353H275Q256 353 256 372V395Q256 414 277 414H311M690 353H728Q750 353 750 372V395Q750 414 729 414H692" fill="none" stroke="#41453A" stroke-width="12"/>
+<ellipse cx="502" cy="382" rx="196" ry="157" fill="#41453A"/>
+<ellipse cx="502" cy="382" rx="173" ry="135" fill="#B57557"/>
+<path d="M499 255Q542 316 503 380Q469 436 505 513" fill="none" stroke="#EFE4D4" stroke-width="15"/>
+<path d="M447 318Q416 287 389 317Q366 342 409 359Q449 348 447 318M423 431Q392 397 371 424Q359 458 407 469Q434 465 423 431M592 432Q568 401 548 424Q545 455 582 463Q609 456 592 432" fill="#81916F"/>
+<ellipse cx="572" cy="321" rx="26" ry="18" fill="#E8D8BB" transform="rotate(28 572 321)"/><ellipse cx="595" cy="368" rx="27" ry="19" fill="#E8D8BB" transform="rotate(-20 595 368)"/>
+<circle cx="437" cy="390" r="17" fill="#DFB37A"/><circle cx="548" cy="382" r="12" fill="#DFB37A"/>
+<path d="M424 179Q393 156 422 132M504 184Q534 158 505 133M580 186Q554 161 580 134" fill="none" stroke="#8C8B78" stroke-width="3" stroke-linecap="round"/>
+<path d="M795 224L724 537M817 230L746 543" stroke="#63574B" stroke-width="6" stroke-linecap="round"/>
+<circle cx="203" cy="503" r="59" fill="#FAFAF6"/><circle cx="203" cy="503" r="39" fill="#DEDACB"/>
+</svg>

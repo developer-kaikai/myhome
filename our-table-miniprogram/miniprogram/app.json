@@ -1,18 +1,40 @@
 {
   "pages": [
-    "pages/mine/index",
     "pages/home/index",
+    "pages/mine/index",
     "pages/ordering/index",
     "pages/orders/index",
     "pages/party/index",
-    "pages/access/index"
+    "pages/access/index",
+    "pages/orders/submit",
+    "pages/orders/detail",
+    "pages/orders/confirm"
   ],
   "subpackages": [
     {
       "root": "subpackages/chef",
       "pages": [
         "index",
-        "access"
+        "access",
+        "menu",
+        "dish"
+      ]
+    },
+    {
+      "root": "subpackages/reviews",
+      "pages": [
+        "sheet",
+        "index"
+      ]
+    },
+    {
+      "root": "subpackages/party",
+      "pages": [
+        "index",
+        "create",
+        "detail",
+        "purchases",
+        "edit"
       ]
     }
   ],

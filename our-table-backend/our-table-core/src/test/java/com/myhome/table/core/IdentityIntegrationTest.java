@@ -105,12 +105,12 @@ class IdentityIntegrationTest {
   }
 
   @Test
-  void baselineContains27TablesAndFixedRestaurants() {
+  void migratedSchemaContains28TablesAndFixedRestaurants() {
     assertThat(
             jdbc.queryForObject(
                 "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema=DATABASE() AND table_name<>'flyway_schema_history'",
                 Integer.class))
-        .isEqualTo(27);
+        .isEqualTo(28);
     assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM restaurant", Integer.class)).isEqualTo(2);
     assertThat(
             jdbc.queryForObject(

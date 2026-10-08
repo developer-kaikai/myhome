@@ -1,2 +1,12 @@
-import { dailyGuard } from '../../services/api';
-Page({data:{ready:false},async onShow(){const me=await dailyGuard();this.setData({ready:!!me});this.getTabBar()?.setData({selected:'orders',daily:!!me});},start(){wx.switchTab({url:'/pages/ordering/index'});}});
+import { dailyGuard,message } from '../../services/api';
+import { orderingRequest,mealNames } from '../../services/cart';
+import { OrderPage,OrderDetail,stateNames } from '../../services/orders';
+Page({data:{chefOnly:false,ready:false,loading:false,error:'',state:'IN_PROGRESS',page:1,hasMore:false,orders:[] as (OrderDetail&{mealName:string;stateName:string;summary:string;names:string})[]},_visible:false,_generation:0,_timer:0,
+ async onShow(){this._visible=true;const me=await dailyGuard();if(!this._visible)return;if(wx.getStorageSync('chefOrderFilter')){wx.removeStorageSync('chefOrderFilter');this.setData({chefOnly:true,state:'IN_PROGRESS',page:1});}this.setData({ready:!!me});this.getTabBar()?.setData({selected:'orders',daily:!!me,overlayHidden:false});if(me){await this.load();if(this._visible)this._timer=setInterval(()=>{if(this.data.page===1)void this.load(false);},2000);}},
+ onHide(){this._visible=false;this._generation++;this.setData({loading:false});if(this._timer)clearInterval(this._timer);this._timer=0;},onUnload(){this.onHide();},
+ async load(reset=true){if(this.data.loading)return;const generation=++this._generation,state=this.data.state,page=reset?1:this.data.page;this.setData({loading:true});try{const result=await orderingRequest<OrderPage>(`${this.data.chefOnly?'/chef':''}/meal-orders?state=${state}&page=${page}`);if(!this._visible||generation!==this._generation)return;const rows=result.orders.map(o=>({...o,mealName:mealNames[o.meal],stateName:stateNames[o.status],summary:(o.status==='COMPLETED'?o.actualItems:o.items).map(i=>i.dishName+' '+i.quantity+'份').join('、'),names:o.participants.map(p=>p.name).join('、')}));this.setData({page:result.page,hasMore:result.hasMore,orders:rows,error:''});}catch(e){if(generation===this._generation)this.setData({error:message(e)});}finally{if(generation===this._generation)this.setData({loading:false});}},
+ async filter(e:WechatMiniprogram.TouchEvent){if(this.data.loading)return;this.setData({state:e.currentTarget.dataset.state,orders:[],page:1});await this.load();},
+ async next(){if(this.data.loading)return;this.setData({page:this.data.page+1});await this.load(false);},async previous(){if(this.data.loading||this.data.page<=1)return;this.setData({page:this.data.page-1});await this.load(false);},
+ all(){if(this.data.loading)return;this.setData({chefOnly:false,page:1});void this.load();},
+ open(e:WechatMiniprogram.TouchEvent){wx.navigateTo({url:`/pages/orders/detail?id=${e.currentTarget.dataset.id}`});},start(){wx.switchTab({url:'/pages/ordering/index'});}
+});

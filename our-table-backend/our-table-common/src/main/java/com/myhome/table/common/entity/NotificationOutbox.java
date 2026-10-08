@@ -44,6 +44,12 @@ public record NotificationOutbox(
     Instant sentAt,
     /** 任务最终结束时间 */
     Instant finishedAt,
+    /** 当前发送尝试标识 */
+    String attemptToken,
+    /** 当前发送预占开始时间 */
+    Instant sendingStartedAt,
+    /** 发送预占时的授权版本 */
+    Long subscriptionVersion,
     /** 创建时间 */
     Instant createdAt,
     /** 更新时间 */

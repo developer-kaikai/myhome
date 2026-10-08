@@ -1,0 +1,2 @@
+.tabs{display:flex;gap:36rpx;margin:28rpx 0;font-size:26rpx;color:#777770}.active{color:#161616;border-bottom:3rpx solid #3A5848;padding-bottom:12rpx}.muted{font-size:24rpx;line-height:1.8}.comment{white-space:pre-wrap;line-height:1.8;margin:20rpx 0}
+.avatar{width:44rpx;height:44rpx;border-radius:50%;vertical-align:middle;margin-right:12rpx}

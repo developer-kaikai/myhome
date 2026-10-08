@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800">
+<rect width="1000" height="800" fill="#EAEDE2"/>
+<text x="76" y="93" fill="#4F5D4E" font-family="Arial,sans-serif" font-size="22" letter-spacing="4">OUR TABLE</text>
+<text x="76" y="711" fill="#4F5D4E" font-family="Arial,sans-serif" font-size="20" letter-spacing="3">SLOW AFTERNOON</text>
+<ellipse cx="453" cy="409" rx="152" ry="128" fill="#D6DCCB"/>
+<circle cx="417" cy="375" r="134" fill="#FAFAF6" stroke="#CCD2BD" stroke-width="2"/>
+<path d="M499 323H524Q563 323 563 359Q563 395 523 395H500" fill="none" stroke="#FAFAF6" stroke-width="20"/>
+<circle cx="417" cy="361" r="98" fill="#FAFAF6" stroke="#CDD4BD" stroke-width="3"/>
+<circle cx="417" cy="361" r="78" fill="#A8B591"/>
+<path d="M367 337Q393 314 425 319" fill="none" stroke="#E3E9D7" stroke-width="5" stroke-linecap="round"/>
+<ellipse cx="670" cy="516" rx="105" ry="76" fill="#D6DCCB"/><ellipse cx="650" cy="491" rx="106" ry="77" fill="#FAFAF6" stroke="#CCD2BD" stroke-width="2"/>
+<path d="M592 486Q624 437 668 461Q704 480 687 518Q650 537 615 518Z" fill="#C6AF89"/><path d="M616 474Q642 481 635 520M644 461Q667 481 661 524" fill="none" stroke="#E9DCC7" stroke-width="5"/>
+<path d="M730 282Q702 196 756 159M724 224Q684 220 688 190Q722 187 724 224M732 191Q733 157 762 150Q773 178 732 191M733 245Q767 215 787 239Q780 265 733 245" fill="#879B7F" stroke="#879B7F" stroke-width="3"/>
+<path d="M185 279L233 556" stroke="#525F4E" stroke-width="5" stroke-linecap="round"/><ellipse cx="183" cy="264" rx="19" ry="40" fill="#525F4E" transform="rotate(-10 183 264)"/>
+</svg>

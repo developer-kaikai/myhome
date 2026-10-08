@@ -1,0 +1,1 @@
+.page{padding-bottom:80rpx}.item{padding:24rpx 0;border-bottom:1rpx solid #DDDDD7}.muted{font-size:24rpx;line-height:1.8}.picker{padding:24rpx 0;border-bottom:1rpx solid #DDDDD7}.quantity{justify-content:flex-start;gap:28rpx;margin-top:12rpx}.small{width:60rpx;min-width:60rpx;margin:0;padding:0;line-height:60rpx;height:60rpx;font-size:30rpx;background:#EFEEE8}

@@ -1,0 +1,1 @@
+.line{display:block}.item{padding:24rpx 0;border-bottom:1rpx solid #DDDDD7}.count{width:120rpx;text-align:right}.tags{display:flex;gap:16rpx;flex-wrap:wrap}.tag{background:#F0F1E6;border-radius:12rpx;padding:12rpx 18rpx;font-size:24rpx}.muted{font-size:24rpx;line-height:1.8}.page{padding-bottom:80rpx}

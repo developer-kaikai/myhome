@@ -9,10 +9,16 @@ public final class TextRules {
   private TextRules() {}
 
   public static String required(String value, int max) {
+    return required(value, max, 255, false);
+  }
+
+  public static String required(String value, int max, int storageMax, boolean multiline) {
     if (value == null || value.isBlank()) throw ApiException.invalid("内容不能为空");
     String result = value.strip();
-    if (result.codePointCount(0, result.length()) > 255
-        || result.codePoints().anyMatch(c -> Character.isISOControl(c))
+    if (result.codePointCount(0, result.length()) > storageMax
+        || result
+            .codePoints()
+            .anyMatch(c -> Character.isISOControl(c) && !(multiline && (c == '\n' || c == '\r')))
         || GRAPHEME.matcher(result).results().count() > max)
       throw ApiException.invalid("内容格式或长度不符合要求");
     return result;

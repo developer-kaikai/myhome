@@ -21,4 +21,10 @@ public record PartyInvitation(
     /** 创建时间 */
     Instant createdAt,
     /** 数据库派生字段 */
-    Integer activeMarker) {}
+    Integer activeMarker,
+    /** 邀请令牌AES-256-GCM密文 */
+    byte[] tokenCiphertext,
+    /** 邀请令牌AES-GCM随机数 */
+    byte[] tokenNonce,
+    /** 邀请令牌加密密钥版本 */
+    String encryptionKeyVersion) {}
